@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Slider from 'react-input-slider';
+import ToggleButton from 'react-toggle-button';
   import {max, scaleBand, scaleLinear} from 'd3';
 
  
@@ -7,7 +8,9 @@ import Slider from 'react-input-slider';
   const height = 500;
   const margins={top:50,bottom:50,left:100,right:50};
 export const Network= (data)=>{
-    const [epoch,setEpoch]=useState({value:1})
+    const [epoch,setEpoch]=useState({value:0})
+    const [node,setNode]=useState({value:-1})
+    const [select,setSelect]=useState({selection:0})
     const xScale = scaleBand()
      .domain(data.data.map((d) => d.layer))
      .range([margins.left, width-margins.right]);
@@ -24,7 +27,7 @@ export const Network= (data)=>{
    return (
     <g>
       <svg width={width} height={height} transform={`translate(${margins.left},${margins.top})`}>
-        {data.data.filter(d=>d.epoch===epoch.value).map((d) => (
+        {data.data.filter(d=>((d.epoch===epoch.value)&&((d.node===node.value)||(node.value===-1)))).map((d) => (
           <g>
             <circle
             key={`${d.layer}_${d.node}`}
@@ -42,7 +45,8 @@ export const Network= (data)=>{
             stroke='black'
             fill='red'
             opacity={biasScale(-d.bias)}
-            ></circle>
+            >
+            </circle>
             <circle
             key={`${d.layer}_${d.node}`}
             cx={xScale(d.layer)}
@@ -75,6 +79,8 @@ export const Network= (data)=>{
        ))}
        
      </svg>
+
+
      <Slider
     axis="x"
     xstep={1}

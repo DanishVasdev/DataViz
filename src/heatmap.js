@@ -1,8 +1,8 @@
 import React from 'react';
 import {scaleLinear,scaleBand, axisBottom} from 'd3';
 
-const height=400;
-const width=400;
+const height=420;
+const width=470;
 const margins={top:50,bottom:50,left:100,right:50};
 export const Heat_Map=(data)=>
 {

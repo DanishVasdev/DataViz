@@ -14,6 +14,17 @@ export const Shap= (data)=>{
    const xScale = scaleLinear()
      .domain([-0.5,0.5])
      .range([margins.left, width-margins.right]);
+
+    const colorScale= scaleLinear()
+    .domain([0,0.4])
+    .range(["blue","red"])
+
+    function mod(a){
+      if(a<0){
+        return -a
+      }
+      return a
+    }
     
    return (
     <g>
@@ -23,107 +34,122 @@ export const Shap= (data)=>{
          <circle
            cy={yScale('battery_power')}
            cx={xScale(d.battery_power)}
+           fill={colorScale(mod(d.battery_power))}
            r={2}
          />
          <circle
            cy={yScale("blue")}
            cx={xScale(d.blue)}
+           fill={colorScale(mod(d.blue))}
            r={2}
          />
          <circle
            cy={yScale("clock_speed")}
            cx={xScale(d.clock_speed)}
+           fill={colorScale(mod(d.clock_speed))}
            r={2}
          />
          <circle
            cy={yScale('dual_sim')}
-           cx={xScale(d.ram)}
+           cx={xScale(d.dual_sim)}
+           fill={colorScale(mod(d.dual_sim))}
            r={2}
          />
          <circle
            cy={yScale('fc')}
            cx={xScale(d.fc)}
+           fill={colorScale(mod(d.fc))}
            r={2}
          />
          <circle
            cy={yScale('four_g')}
            cx={xScale(d.four_g)}
+           fill={colorScale(mod(d.four_g))}
            r={2}
          />
          <circle
            cy={yScale('int_memory')}
            cx={xScale(d.int_memory)}
+           fill={colorScale(mod(d.int_memory))}
            r={2}
          />\
          <circle
            cy={yScale('m_dep')}
            cx={xScale(d.m_dep)}
+           fill={colorScale(mod(d.m_dep))}
            r={2}
          />
          <circle
            cy={yScale('mobile_w')}
            cx={xScale(d.mobile_w)}
+           fill={colorScale(mod(d.mobile_w))}
            r={2}
          />
          <circle
            cy={yScale('n_cores')}
            cx={xScale(d.n_cores)}
+           fill={colorScale(mod(d.n_cores))}
            r={2}
          />
          <circle
            cy={yScale('pc')}
            cx={xScale(d.pc)}
+           fill={colorScale(mod(d.pc))}
            r={2}
          />
          <circle
            cy={yScale('px_height')}
            cx={xScale(d.px_height)}
+           fill={colorScale(mod(d.px_height))}
            r={2}
          />
 
          <circle
            cy={yScale('px_width')}
            cx={xScale(d.px_width)}
+           fill={colorScale(mod(d.px_width))}
            r={2}
          />
          <circle
            cy={yScale('ram')}
            cx={xScale(d.ram)}
+           fill={colorScale(mod(d.ram))}
            r={2}
          />
          <circle
            cy={yScale('sc_h')}
            cx={xScale(d.sc_h)}
+           fill={colorScale(mod(d.sc_h))}
            r={2}
          />
          <circle
            cy={yScale('sc_w')}
            cx={xScale(d.sc_w)}
+           fill={colorScale(mod(d.sc_w))}
            r={2}
          />
          <circle
            cy={yScale('talk_time')}
            cx={xScale(d.talk_time)}
+           fill={colorScale(mod(d.talk_time))}
            r={2}
          />
          <circle
            cy={yScale('three_g')}
            cx={xScale(d.three_g)}
+           fill={colorScale(mod(d.three_g))}
            r={2}
          />
          <circle
            cy={yScale('touch_screen')}
-           cx={xScale(d.three_g)}
-           r={2}
-         />
-         <circle
-           cy={yScale('three_g')}
-           cx={xScale(d.three_g)}
+           cx={xScale(d.touch_screen)}
+           fill={colorScale(mod(d.touch_screen))}
            r={2}
          />
          <circle
            cy={yScale('wifi')}
-           cx={xScale(d.three_g)}
+           cx={xScale(d.wifi)}
+           fill={colorScale(mod(d.wifi))}
            r={2}
          />
          </g>
