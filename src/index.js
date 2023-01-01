@@ -8,6 +8,7 @@ import React, {
  import { Heat_Map } from './heatmap';
  import { Shap } from './shap';
 import { Network } from './network';
+import { Planet } from './planet_graph';
  
 const csvUrl =
    'https://gist.githubusercontent.com/DanishVasdev/aa65651c100d6c00d991e1e0eb5a756b/raw/training.csv';
@@ -17,7 +18,8 @@ const shap =
    'https://gist.githubusercontent.com/DanishVasdev/fb365733ea94c8a1c3f345a588acff48/raw/shap2.csv';
 const weights=
   'https://gist.githubusercontent.com/DanishVasdev/6d86aa31a210ec44e7cc193c3df3eb57/raw/weights.csv'
-
+const preds=
+  'https://gist.githubusercontent.com/DanishVasdev/be3ea43fcc02191ad57e649eb340b933/raw/preds.csv'
  
  const App = () => {
    const [data, setData] = useState(null);
@@ -88,6 +90,20 @@ const weights=
     }
      csv(weights,parse).then(setData4);
    }, []);
+   const [data5, setData5] = useState(null);
+   useEffect(() => {
+    const parse=(data)=>{
+      data.index=+data.index
+      data.epoch=+data.epoch
+      data.price_range=+data.price_range
+      data.prob0=+data.prob0
+      data.prob1=+data.prob1
+      data.prob2=+data.prob2
+      data.prob3=+data.prob3
+      return(data);
+    }
+     csv(preds,parse).then(setData5);
+   }, []);
    if (!data) {
     return <pre>Loading...</pre>;
   }
@@ -100,7 +116,10 @@ const weights=
   if (!data4) {
     return <pre>Loading...</pre>;
   }
-  console.log(data4);
+  if (!data5) {
+    return <pre>Loading...</pre>;
+  }
+  console.log(data5)
    return(
     <g>
     <h1 align='center'>Visualization of MLP</h1>
@@ -108,7 +127,12 @@ const weights=
     <Line_chart data={data}/>
     <Heat_Map data={data2}></Heat_Map>
     <Shap data={data3}></Shap>
+    <div>
     <Network data={data4}></Network>
+    </div>
+    <div>
+    <Planet data={data5}></Planet>
+    </div>
     </g>
    );
  };
