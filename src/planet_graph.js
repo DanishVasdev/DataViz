@@ -107,7 +107,8 @@ export const Planet= (data)=>{
 
         {data.data.filter(d=>((d.epoch===(10*epoch.value)))).map((d) => (
           <g>
-            <circle
+            <circle 
+            id="sample"
             key={d.index}
             cx={xScale(gravity(d.prob0,d.prob1,d.prob2,d.prob3)[0])}
             cy={yScale(gravity(d.prob0,d.prob1,d.prob2,d.prob3)[1])}
