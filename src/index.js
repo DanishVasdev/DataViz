@@ -9,6 +9,16 @@ import React, {
  import { Shap } from './shap';
 import { Network } from './network';
 import { Planet } from './planet_graph';
+// import {
+//   Slider,
+//   SliderTrack,
+//   SliderFilledTrack,
+//   SliderThumb,
+//   SliderMark,
+// } from '@chakra-ui/react'
+import Slider from 'react-input-slider';
+//import Slider from 'react-rangeslider';
+//import 'react-rangeslider/lib/index.css';
  
 const csvUrl =
    'https://gist.githubusercontent.com/DanishVasdev/aa65651c100d6c00d991e1e0eb5a756b/raw/training.csv';
@@ -104,6 +114,7 @@ const preds=
     }
      csv(preds,parse).then(setData5);
    }, []);
+   const [epoch,setEpoch]=useState({value:0})
    if (!data) {
     return <pre>Loading...</pre>;
   }
@@ -120,18 +131,37 @@ const preds=
     return <pre>Loading...</pre>;
   }
   console.log(data5)
+  const props1={
+    epoch:epoch.value,
+    data:data5
+    
+  }
+  const props2={
+    epoch:epoch.value,
+    data:data4
+    
+  }
    return(
     <g>
     <h1 align='center'>Visualization of MLP</h1>
-    <p>Three graphs have been plotted, loss function, confusion matrix and feature importance graph using SHAP</p>
+    <div>
+    <div>
+    <h3>Epoch: {10*epoch.value}</h3>
+    <Slider
+    axis='x'
+    step={1}
+    xmin={0}
+    xmax={9}
+    x={epoch.value}
+    onChange={( state ) =>setEpoch({value:state.x})}
+    > </Slider>
+    </div>
+    
+    <Network props={props2}></Network>
+    <Planet props={props1}></Planet>
     <Line_chart data={data}/>
     <Heat_Map data={data2}></Heat_Map>
     <Shap data={data3}></Shap>
-    <div>
-    <Network data={data4}></Network>
-    </div>
-    <div>
-    <Planet data={data5}></Planet>
     </div>
     </g>
    );

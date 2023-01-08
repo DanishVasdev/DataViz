@@ -1,25 +1,25 @@
 import React from 'react';
 import {scaleLinear,max} from 'd3';
 
-const height=400;
-const width=400;
+const height=300;
+const width=300;
 const margins={top:50,bottom:50,left:100,right:50};
 export const Line_chart=(data)=>
 {
     const yScale = scaleLinear()
     .domain([0, max(data.data, (d) => d.loss)])
-    .range([0, height-30]);
+    .range([0, height-38]);
 
     const xScale = scaleLinear()
     .domain([0, max(data.data, (d) => d.epoch)])
-    .range([0,width-30])
+    .range([0,width-18])
 
   return (
     <g>
-     <svg width={width} height={height} transform={`translate(${margins.left},${margins.top})`} align='center' >
+     <svg width={width} height={height} transform={`translate(${margins.left-60},${margins.top-300})`} align='center' >
       <g transform={`translate(10,10)`}>
         {xScale.ticks().map((ticks)=>(
-          <g key={ticks} transform={`translate(${xScale(ticks)+10},0)`}>
+          <g key={ticks} transform={`translate(${xScale(ticks)+12},0)`}>
           <text
           style={{ textAnchor: 'middle' }}
               dy=".71em"

@@ -2,8 +2,8 @@ import React from 'react';
   import { scaleBand, scaleLinear} from 'd3';
 
  
-  const width = 500;
-  const height = 500;
+  const width = 400;
+  const height = 400;
   const margins={top:50,bottom:50,left:100,right:50};
   //['battery_power','blue,clock_speed','dual_sim,fc','four_g','int_memory','m_dep','mobile_wt','n_cores','pc','px_height','px_width','ram','sc_h','sc_w','talk_time','three_g','touch_screen','wifi']
 export const Shap= (data)=>{
@@ -28,7 +28,7 @@ export const Shap= (data)=>{
     
    return (
     <g>
-      <svg width={width} height={height} transform={`translate(${margins.left},${margins.top})`} align='center'>
+      <svg width={width} height={height} transform={`translate(${margins.left+800},${margins.top-300})`} align='center'>
        {data.data.map((d) => (
         <g key={d.index}>
          <circle
@@ -159,30 +159,177 @@ export const Shap= (data)=>{
           <text
           style={{ textAnchor: 'middle' }}
               dy=".71em"
-              y={height-30}>{ticks}</text>
+              y={height-60}>{ticks}</text>
+          <line
+          stroke={'black'}
+          opacity={'60%'}
+          //x1={xScale(ticks)}
+          y1={height-62}
+          //x2={xScale(ticks)}
+          y2={50}></line>
         </g>
         ))
         }
        <text x={0} y={yScale('battery_power')}>battery_power</text>
+       <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('battery_power')}
+          x2={350}
+          y2={yScale('battery_power')}></line>
          <text x={0} y={yScale('blue')}>blue</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('blue')}
+          x2={350}
+          y2={yScale('blue')}></line>
          <text x={0} y={yScale('clock_speed')}>clock_speed</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('clock_speed')}
+          x2={350}
+          y2={yScale('clock_speed')}></line>
          <text x={0} y={yScale('dual_sim')}>dual_sim</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('dual_sim')}
+          x2={350}
+          y2={yScale('dual_sim')}></line>
          <text x={0} y={yScale('fc')}>fc</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('fc')}
+          x2={350}
+          y2={yScale('fc')}></line>
          <text x={0} y={yScale('four_g')}>four_g</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('four_g')}
+          x2={350}
+          y2={yScale('four_g')}></line>
          <text x={0} y={yScale('int_memory')}>int_memory</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('int_memory')}
+          x2={350}
+          y2={yScale('int_memory')}></line>
          <text x={0} y={yScale('m_dep')}>m_dep</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('m_dep')}
+          x2={350}
+          y2={yScale('m_dep')}></line>
          <text x={0} y={yScale('mobile_wt')}>mobile_wt</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('mobile_wt')}
+          x2={350}
+          y2={yScale('mobile_wt')}></line>
          <text x={0} y={yScale('n_cores')}>n_cores</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('n_cores')}
+          x2={350}
+          y2={yScale('n_cores')}></line>
          <text x={0} y={yScale('pc')}>pc</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('pc')}
+          x2={350}
+          y2={yScale('pc')}></line>
          <text x={0} y={yScale('px_height')}>px_height</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('px_height')}
+          x2={350}
+          y2={yScale('px_height')}></line>
          <text x={0} y={yScale('px_width')}>px_width</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('px_width')}
+          x2={350}
+          y2={yScale('px_width')}></line>
          <text x={0} y={yScale('ram')}>ram</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('ram')}
+          x2={350}
+          y2={yScale('ram')}></line>
          <text x={0} y={yScale('sc_h')}>sc_h</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('sc_h')}
+          x2={350}
+          y2={yScale('sc_h')}></line>
          <text x={0} y={yScale('sc_w')}>sc_w</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('sc_w')}
+          x2={350}
+          y2={yScale('sc_w')}></line>
          <text x={0} y={yScale('talk_time')}>talk_time</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('talk_time')}
+          x2={350}
+          y2={yScale('talk_time')}></line>
          <text x={0} y={yScale('three_g')}>three_g</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('three_g')}
+          x2={350}
+          y2={yScale('three_g')}></line>
          <text x={0} y={yScale('touch_screen')}>touch_screen</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('touch_screen')}
+          x2={350}
+          y2={yScale('touch_screen')}></line>
          <text x={0} y={yScale('wifi')}>wifi</text>
+         <line
+          stroke={'black'}
+          opacity={'60%'}
+          x1={100}
+          y1={yScale('wifi')}
+          x2={350}
+          y2={yScale('wifi')}></line>
          <text x={110} y={495}>SHAP values(indicates impact of feature)</text>
      </svg>
      </g>
