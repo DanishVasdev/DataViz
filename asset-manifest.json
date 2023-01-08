@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/DataViz/static/js/main.807d652b.js",
+    "main.js": "/DataViz/static/js/main.f4d1f97d.js",
     "index.html": "/DataViz/index.html",
-    "main.807d652b.js.map": "/DataViz/static/js/main.807d652b.js.map"
+    "main.f4d1f97d.js.map": "/DataViz/static/js/main.f4d1f97d.js.map"
   },
   "entrypoints": [
-    "static/js/main.807d652b.js"
+    "static/js/main.f4d1f97d.js"
   ]
 }
