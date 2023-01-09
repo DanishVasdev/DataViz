@@ -32,6 +32,7 @@ const preds=
   'https://gist.githubusercontent.com/DanishVasdev/be3ea43fcc02191ad57e649eb340b933/raw/preds.csv'
  
  const App = () => {
+   var flag=0;
    const [data, setData] = useState(null);
    useEffect(() => {
     const parse=(data)=>{
@@ -138,12 +139,15 @@ const preds=
   }
   const props2={
     epoch:epoch.value,
-    data:data4
-    
+    data:data4,
+    flag:flag
   }
    return(
     <g>
     <h1 align='center'>Visualization of MLP</h1>
+    {/* <button onClick={()=>{
+      console.log(flag)
+      flag=1-flag}}>EXPLAIN</button> */}
     <div>
     <div>
     <h3>Epoch: {10*epoch.value}</h3>

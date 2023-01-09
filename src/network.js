@@ -3,14 +3,16 @@ import React, { useState } from 'react';
   import Tooltip from "@material-ui/core/Tooltip";
  import { Info } from './info_box';
   const width = 500;
-  const height = 500;
+  const height = 560;
   const margins={top:50,bottom:50,left:50,right:0};
 
 export const Network= (props)=>{
+    var flag=props.props.flag
+    console.log(flag)
     const data=props.props.data
     const epoch=props.props.epoch
     const [node,setNode]=useState({value:-1})
-    const [layer,setLayer]=useState({value:-1})
+    const [layer,setLayer]=useState({value:-1 ,node:-1,bias:-1,weights:[]})
     const xScale = scaleBand()
      .domain(data.map((d) => d.layer))
      .range([margins.left, width-margins.right]);
@@ -48,6 +50,16 @@ export const Network= (props)=>{
         return weightScale(weight);
       }
     }
+    function returnWeigths(node,epoch,l){
+      const weights=[]
+      const data3=data
+      data3.filter((d)=>(d.epoch===epoch&&d.node===node&&d.layer==l)).map((d)=>{
+         weights.push(d.weight)
+      }
+      )
+      weights.shift()
+      return weights
+    }
     function addWeight(d){
       if(d.weight===0){
         return;
@@ -58,7 +70,7 @@ export const Network= (props)=>{
         <Tooltip title={`weight: ${d.weight}`}>
         <g>
         <line 
-        key={`${d.layer}_${d.node}_${d.target}`}
+        key={`${d.layer}_${d.node}_${d.target}_1`}
         x1={xScale(d.layer)}
         x2={xScale(d.layer+1)}
         y1={yScale(d.node)}
@@ -67,7 +79,7 @@ export const Network= (props)=>{
         stroke={decide_color2(d.weight)}
         strokeOpacity={weightScale3(d.weight)}></line>
         <line 
-        key={`${d.layer}_${d.node}_${d.target}`}
+        key={`${d.layer}_${d.node}_${d.target}_2`}
         x1={xScale(d.layer)}
         x2={xScale(d.layer+1)}
         y1={yScale(d.node)}
@@ -80,18 +92,19 @@ export const Network= (props)=>{
         </g>);
       }
     }
+    if(flag===0){
    return (
     <g>
       <svg width={width} height={height} transform={`translate(${0},${margins.top})`}>
         {data.filter(d=>((d.epoch===epoch)&&((d.node===node.value)||(node.value===-1)))).map((d) => (
           <g onMouseEnter={()=>{
-            setLayer({value:d.layer})
+            setLayer({value:d.layer,node:d.node,bias:d.bias,weights:returnWeigths(d.node,d.epoch,d.layer)})
           }}
           onMouseLeave={()=>{
-            setLayer({value:-1})
+            setLayer({value:-1,node:-1,bias:-1,weights:[]})
           }}>
             <circle
-            key={`${d.layer}_${d.node}`}
+            key={`${d.layer}_${d.node}_1`}
             cx={xScale(d.layer)}
             cy={yScale(d.node)}
             r={10}
@@ -101,7 +114,7 @@ export const Network= (props)=>{
             
             <Tooltip title={`bias: ${d.bias}`}>
             <circle
-            key={`${d.layer}_${d.node}`}
+            key={`${d.layer}_${d.node}_2`}
             cx={xScale(d.layer)}
             cy={yScale(d.node)}
             r={10}
@@ -111,9 +124,18 @@ export const Network= (props)=>{
             {addWeight(d)}
           </g>
        ))}
-      <Info layer={layer.value}></Info>
+      <Info layer={layer}></Info>
      </svg>
      </g>
    );
-
+        }
+  else{
+    return(
+    <g>
+      <svg width={width} height={height} transform={`translate(${0},${margins.top})`}>
+        <rect height={height-10} width={width-10} fill='white'></rect>
+     </svg>
+     </g>
+   );
+  }
 }

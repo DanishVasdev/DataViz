@@ -330,7 +330,7 @@ export const Shap= (data)=>{
           y1={yScale('wifi')}
           x2={350}
           y2={yScale('wifi')}></line>
-         <text x={110} y={495}>SHAP values(indicates impact of feature)</text>
+         <text x={110} y={385}>SHAP values(indicates impact of feature)</text>
      </svg>
      </g>
    );
